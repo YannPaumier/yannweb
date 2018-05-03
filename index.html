@@ -1,17 +1,38 @@
 <!DOCTYPE html>
 <head>
   <script>
-
+    var looper;
+    var degrees = 0;
+    function rotateAnimation(el,speed){
+    	var elem = document.getElementById(el);
+    	if(navigator.userAgent.match("Chrome")){
+    		elem.style.WebkitTransform = "rotate("+degrees+"deg)";
+    	} else if(navigator.userAgent.match("Firefox")){
+    		elem.style.MozTransform = "rotate("+degrees+"deg)";
+    	} else if(navigator.userAgent.match("MSIE")){
+    		elem.style.msTransform = "rotate("+degrees+"deg)";
+    	} else if(navigator.userAgent.match("Opera")){
+    		elem.style.OTransform = "rotate("+degrees+"deg)";
+    	} else {
+    		elem.style.transform = "rotate("+degrees+"deg)";
+    	}
+    	looper = setTimeout('rotateAnimation(\''+el+'\','+speed+')',speed);
+    	degrees++;
+    	if(degrees > 359){
+    		degrees = 1;
+    	}
+    	document.getElementById("status").innerHTML = "rotate("+degrees+"deg)";
+    }
   </script>
 </head>
 <html>
-<body>
+<body onload="rotateAnimation('jeje',30)">
 
-<h1>Salut Jeje</h1>
+<h1>Salut Gros noob :p</h1>
   <div class="flip-container">
     <div class="flipper" onclick="this.classList.toggle('flipped')">
       <div class="front">
-       <img src="https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-9/15284870_10154224407891676_5394320083149670705_n.jpg?_nc_cat=0&oh=0052b189b324a97cda41277e8cd77a14&oe=5B9BA907" />
+       <img id="jeje" src="https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-9/15284870_10154224407891676_5394320083149670705_n.jpg?_nc_cat=0&oh=0052b189b324a97cda41277e8cd77a14&oe=5B9BA907" />
       </div>
     </div>
   </div>
